@@ -10,15 +10,19 @@ configure do
 end
 
 get '/' do
-  #Add code here
+  erb :index
 end
 
-
 #Add code here
-
+get '/movies' do
+  c = PGconn.new(:host => "localhost", :dbname => dbname)
+  @movies = c.exec_params("select * from movies WHERE title=$1;", [params["title"]])
+  c.close
+  erb :movies
+end
 
 get '/movies/new' do
-  erb :new_movie
+  erb :new
 end
 
 post '/movies' do
