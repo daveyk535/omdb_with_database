@@ -1,6 +1,7 @@
+<h1> Results </h1>
 <body>
 <% @movies.each do |movie| %>
-<a href="/movie/<%=movie['id']%>"> <%= movie["title"] %><%= movie[:year] %>
+<a href="/movie/<%=movie['id']%>"> <%= movie["title"] %><%= movie["year"] %>
 </a>
 <% end %>
 

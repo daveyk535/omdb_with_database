@@ -21,6 +21,13 @@ get '/movies' do
   erb :movies
 end
 
+get '/movie/:id' do
+  c = PGconn.new(:host => "localhost", :dbname => dbname)
+  @movies = c.exec_params("select * from movies WHERE id=$1;", [params["id"]])
+  c.close
+  erb :details
+end
+
 get '/movies/new' do
   erb :new
 end
